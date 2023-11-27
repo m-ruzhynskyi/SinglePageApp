@@ -27,4 +27,199 @@
 
 body {
     margin: 0;
+    background-image: url("./assets/img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wrapper{
+    max-width: 1440px;
+    margin:auto;
+}
+
+h2{
+     font-family: PoppinsBold;
+     font-size: 42px;
+     text-align: center;
+     color: white;
+     margin: 29px 0 12px 0;
+ }
+
+header{
+    background-color: rgba(36, 63, 77, 1);
+}
+
+header h1{
+    color: white;
+    font-family: PoppinsBold;
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+main {
+    display: flex;
+}
+
+.left, .right{
+    width: 400px;
+    height: 780px;
+    background-color: rgba(163, 187, 200, 1);
+    border: 4px solid rgba(36, 63, 77, 1);
+
+}
+.news{
+    width: 640px;
+    background-color: rgba(246, 248, 252, 1);
+    border: 4px solid rgba(36, 63, 77, 1);
+}
+
+.toDo{
+    height: 464px;
+    border-top: 4px solid rgba(36, 63, 77, 1);
+}
+
+.weather{
+    height: 276px;
+    border-top: 4px solid rgba(36, 63, 77, 1);
+}
+
+.exchange{
+    height: 320px;
+    border-top: 4px solid rgba(36, 63, 77, 1);
+}
+
+.rollADice{
+    height: 505px;
+    border-top: 4px solid rgba(36, 63, 77, 1);
+}
+
+footer{
+    background-color: rgba(36, 63, 77, 1);
+    height: 142px;
+}
+
+.news{
+    width: 637px;
+    height: 773px;
+    overflow: auto;
+}
+
+.toDo #newTask{
+    font-family: PoppinsMedium;
+    font-size: 24px;
+    background-color: rgba(252, 215, 182, 1);
+    border-radius: 15px;
+    border: none;
+    max-width: 287px;
+    padding: 7px 0 7px 23px;
+    margin-left: 42px;
+    margin-bottom: 25px;
+}
+
+.toDo .Butts{
+    display: flex;
+    gap: 7px;
+    margin-left: 32px;
+}
+
+.toDo .Butts button{
+    font-family: PoppinsMedium;
+    font-size: 24px;
+    background-color: rgba(173, 136, 110, 1);
+    color: white;
+    max-width: 112px;
+    height: 52px;
+    padding: 8px 34px 8px 34px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.toDo .taskList{
+    margin-top: 38px;
+    margin-left: 23px;
+    width: 360px;
+    height: 180px;
+    overflow: auto;
+}
+
+.exchange #input{
+    margin-top: 35px;
+}
+
+.exchange div{
+    display: flex;
+    justify-content: center;
+}
+
+.exchange input{
+    background-color: rgba(252, 215, 182, 1);
+    width: 238px;
+    height: 50px;
+    border-radius: 15px 0 0 15px;
+    border: none;
+    margin-bottom: 16px;
+    margin-left: 10px;
+    padding: 7px 0 7px 23px;
+    font-family: PoppinsMedium;
+    font-size: 24px;
+    box-sizing: border-box;
+}
+
+.exchange select{
+    background-color: rgba(173, 136, 110, 1);
+    width: 44px;
+    height: 50px;
+    border: none;
+    appearance: none;
+    padding: 5px;
+}
+
+/*right*/
+
+.rollADice div:first-of-type{
+    display: flex;
+    margin-left: 53px;
+    margin-bottom: 35px;
+}
+#roll{
+    font-family: PoppinsMedium;
+    font-size: 24px;
+    background-color: rgba(252, 215, 182, 1);
+    border-radius: 15px 0 0 15px;
+    border: none;
+    min-width: 211px;
+    padding: 7px 0 7px 23px;
+
+}
+
+#rollDeices{
+    font-family: PoppinsMedium;
+    font-size: 24px;
+    background-color: rgba(173, 136, 110, 1);
+    color: white;
+    max-width: 60px;
+    height: 49px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+#dices{
+    width: 380px;
+    height: 245px;
+    margin: 0 10px 11px 10px;
+}
+
+.justImages{
+    display: flex;
+    justify-content: space-around;
+}
+
+.justImages img{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
 }

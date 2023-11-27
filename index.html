@@ -9,7 +9,59 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-
+    <div class="wrapper">
+        <header>
+            <h1>NEWS</h1>
+        </header>
+        <main>
+            <div class="right">
+                <div class="toDo">
+                    <h2>TO-DO LIST</h2>
+                    <input name="task" id="newTask" type="text" placeholder="enter new task..." required>
+                    <div class="Butts">
+                        <button id="addNewTask">Add</button>
+                        <button id="allTasks">All</button>
+                        <button id="binTasks">Bin</button>
+                    </div>
+                    <div class="taskList"></div>
+                </div>
+                <div class="exchange">
+                    <h2>EXCHANGE</h2>
+                    <div id="input">
+                        <input type="number">
+                        <select id="inCountry"></select>
+                    </div>
+                    <div id="outer">
+                        <input type="number">
+                        <select id="ourCountry"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="news"></div>
+            <div class="left">
+                <div class="weather">
+                    <h2>WEATHER</h2>
+                </div>
+                <div class="rollADice">
+                    <h2>ROLL A DICE</h2>
+                    <div>
+                        <input type="number" id="roll" placeholder="# of dice ..." max="6" min="0">
+                        <button id="rollDeices">roll</button>
+                    </div>
+                    <div id="dices"></div>
+                    <div class="justImages">
+                        <img src="./assets/img/dice1.png">
+                        <img src="./assets/img/dice2.png">
+                        <img src="./assets/img/dice3.png">
+                        <img src="./assets/img/dice4.png">
+                        <img src="./assets/img/dice5.png">
+                        <img src="./assets/img/dice6.png">
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+    </div>
 </body>
 <script src="main.js"></script>
 </html>
