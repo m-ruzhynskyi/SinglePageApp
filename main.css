@@ -138,8 +138,7 @@ footer{
 }
 
 .toDo .taskList{
-    margin-top: 38px;
-    margin-left: 23px;
+    margin: 38px 15px 0 16px;
     width: 360px;
     height: 180px;
     overflow: auto;
@@ -222,4 +221,50 @@ footer{
     width: 40px;
     height: 40px;
     border-radius: 5px;
+}
+
+.completed{
+    background-color: rgba(0 129 0 / 78%)!important;
+    text-decoration:line-through;
+}
+
+.task{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(217, 217, 217, 1);
+    font-family: PoppinsRegular;
+    font-size: 18px;
+    overflow: auto;
+}
+
+.toDoImg{
+    width: 34px;
+    height: 34px;
+}
+
+.buttonsToDo{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.buttonDiv{
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.editEnter{
+    border: 1px solid green;
+    background-color: rgba(252, 215, 182, 1);
+    border-radius: 12px;
+    font-family: PoppinsRegular;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.delete{
+    background-color: rgba(171, 37, 37, 76%);
 }
