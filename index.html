@@ -44,11 +44,19 @@
                 </div>
                 <div class="rollADice">
                     <h2>ROLL A DICE</h2>
-                    <div>
-                        <input type="number" id="roll" placeholder="# of dice ..." max="6" min="0">
-                        <button id="rollDeices">roll</button>
+                    <div class="menu">
+                        <div class="forma">
+                            <input name= 'roll' type="number" id="roll" placeholder="# of dice ..." max="6" min="0" required>
+                            <div class="rollButts">
+                                <button id="rollDeices">roll</button>
+                                <button id="restart">restart</button>
+                            </div>
+                        </div>
                     </div>
-                    <div id="dices"></div>
+                    <div id="dices">
+                        <div class="firstFour"></div>
+                        <div class="lastTwo"></div>
+                    </div>
                     <div class="justImages">
                         <img src="./assets/img/dice1.png">
                         <img src="./assets/img/dice2.png">
@@ -64,4 +72,5 @@
     </div>
 </body>
 <script src="js/toDoTracker.js"></script>
+<script src="js/rollAdice.js"></script>
 </html>

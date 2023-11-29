@@ -178,23 +178,36 @@ footer{
 
 /*right*/
 
-.rollADice div:first-of-type{
+.rollADice .menu{
     display: flex;
     margin-left: 53px;
-    margin-bottom: 35px;
+    margin-bottom: 22px;
 }
+
+.rollADice .forma{
+    display: flex;
+    flex-direction: column;
+}
+
 #roll{
     font-family: PoppinsMedium;
     font-size: 24px;
     background-color: rgba(252, 215, 182, 1);
-    border-radius: 15px 0 0 15px;
+    border-radius: 15px;
     border: none;
-    min-width: 211px;
+    width: 287px;
     padding: 7px 0 7px 23px;
-
+    margin-left: -9px;
+    margin-bottom: 10px;
 }
 
-#rollDeices{
+.rollButts{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+#rollDeices, #restart{
     font-family: PoppinsMedium;
     font-size: 24px;
     background-color: rgba(173, 136, 110, 1);
@@ -206,10 +219,14 @@ footer{
     cursor: pointer;
 }
 
+#restart{
+    max-width: 95px;
+}
+
 #dices{
     width: 380px;
-    height: 245px;
-    margin: 0 10px 11px 10px;
+    height: 200px;
+    margin: 0 10px 4px 10px;
 }
 
 .justImages{
@@ -267,4 +284,20 @@ footer{
 
 .delete{
     background-color: rgba(171, 37, 37, 76%);
+}
+
+.firstFour, .lastTwo {
+    display: flex;
+    height: 101px;
+}
+
+.firstFour img, .lastTwo img {
+    width: 80px;
+    height: 80px;
+    margin-left: 12px;
+}
+
+.lastTwo {
+    display: flex;
+    justify-content: space-around;
 }
