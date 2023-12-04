@@ -1,6 +1,9 @@
-let list = [];
+let localStorageList = JSON.parse(localStorage.getItem('tasks')) || [];
+let deletedList = [];
 
 class NewTask {
+    static loadCompleted = 0
+    static stoploadCompleted = true
     #task;
     #input;
     #div;
@@ -11,9 +14,21 @@ class NewTask {
     #buttonDiv;
     #nav;
     #numHelp = 0;
+    #bin;
+    #completed;
 
-    constructor(task) {
+    constructor(task, completed, bin) {
         this.#task = task;
+        this.#completed = completed;
+        this.#bin = bin;
+    }
+
+    toJSON(){
+        return{
+            task: this.#task,
+            completed: this.#completed,
+            bin: this.#bin,
+        }
     }
 
     get add() {
@@ -71,12 +86,27 @@ class NewTask {
         this.#mainDiv.append(this.#div);
         this.#mainDiv.append(this.#buttonDiv);
         this.#mainDiv.append(this.#nav);
-        list.push(this.#mainDiv)
+
+        deletedList.push(this.#mainDiv)
+
+        if (this.#completed) this.taskCompleted();
+        if (this.#bin) this.bin();
 
         return this.#mainDiv;
     }
 
     taskCompleted(e) {
+        if ((NewTask.loadCompleted === (localStorageList.filter(el => el.completed).length))){
+            NewTask.stoploadCompleted = false
+        }else if ((NewTask.loadCompleted !== (localStorageList.filter(el => el.completed).length)) && this.#completed && NewTask.stoploadCompleted) {
+            this.#input.checked = this.#completed
+            NewTask.loadCompleted += 1
+
+        }
+
+        this.#completed = this.#input.checked
+        let index = -1;
+
         if (this.#input.checked) {
             this.#mainDiv.classList.add('completed');
             document.querySelector('.taskList').append(this.#mainDiv)
@@ -85,10 +115,21 @@ class NewTask {
             document.querySelector('.taskList').prepend(this.#mainDiv)
             this.#input.checked = false;
         }
+
+        localStorageList.findIndex(el => {
+            if (el.task === this.#task) index = localStorageList.indexOf(el)
+        });
+        if (index !== -1) {
+            localStorageList[index].completed = this.#completed;
+            localStorage.setItem('tasks', JSON.stringify(localStorageList));
+        }
     }
 
     bin(e) {
-        this.#input.checked = true
+        (this.#bin) ? this.#input.checked = this.#bin : this.#completed = this.#input.checked;
+
+        let index = -1
+
         if (this.#mainDiv.classList.contains('completed')) {
             this.#button1.style.display = 'none';
             this.#button2.style.display = 'none';
@@ -101,10 +142,19 @@ class NewTask {
             this.#input.style.display = 'none'
         }
         this.#mainDiv.style.display = 'none';
+
+        localStorageList.findIndex(el => {
+            if (el.task === this.#task) index = localStorageList.indexOf(el)
+        });
+        if (index !== -1) {
+            localStorageList[index].bin = true;
+            localStorage.setItem('tasks', JSON.stringify(localStorageList));
+        }
     }
 
     edit(el) {
         let enter = document.createElement('input');
+        let index = -1;
         if (this.#numHelp === 0){
             this.#numHelp += 1;
             this.#div.append(enter);
@@ -119,6 +169,14 @@ class NewTask {
                     el.style.display = '';
                     enter.remove();
                     this.#numHelp = 0;
+
+                    localStorageList.findIndex(el => {
+                        if (el.task === this.#task) index = localStorageList.indexOf(el)
+                    });
+                    if (index !== -1) {
+                        localStorageList[index].task = enter.value;
+                        localStorage.setItem('tasks', JSON.stringify(localStorageList));
+                    }
                 }
             });
         }
@@ -129,11 +187,14 @@ class NewTask {
 function addNewTask() {
     let task = document.querySelector('#newTask')
     if (task.value){
-        let taskAdd = new NewTask(task.value)
+        let taskAdd = new NewTask(task.value, false, false)
         document.querySelector('.taskList').append(taskAdd.add)
+        localStorageList.push(taskAdd.toJSON())
+        localStorage.setItem('tasks', JSON.stringify(localStorageList))
         task.value = '';
-        if(list.length !== 0){
-            list.forEach(el => {
+
+        if(deletedList.length !== 0){
+            deletedList.forEach(el => {
                 if (el.classList.contains('delete')) {
                     el.style.display = 'none';
                 } else {
@@ -143,6 +204,17 @@ function addNewTask() {
     }
 }
 
+window.addEventListener('load', ()=>{
+    if (localStorage.length !== 0){
+        let taskList = JSON.parse(localStorage.getItem('tasks'))
+        taskList.forEach(el => {
+            let taskAdd = new NewTask(el.task, el.completed, el.bin)
+            document.querySelector('.taskList').append(taskAdd.add)
+        })
+
+    }
+})
+
 document.addEventListener("keypress", function (e) {
     if (e.code === 'Enter'){
         addNewTask()
@@ -151,8 +223,8 @@ document.addEventListener("keypress", function (e) {
 document.querySelector('#addNewTask').addEventListener('click', function (e){ addNewTask() })
 
 document.querySelector('#binTasks').addEventListener('click', function (e) {
-    if(list.length !== 0){
-        list.forEach(el => {
+    if(localStorageList.length !== 0){
+        deletedList.forEach(el => {
             if (el.classList.contains('delete')) {
                 el.style.display = '';
             } else {
@@ -163,8 +235,8 @@ document.querySelector('#binTasks').addEventListener('click', function (e) {
 })
 
 document.querySelector('#allTasks').addEventListener('click', function (e) {
-    if(list.length !== 0){
-        list.forEach(el => {
+    if(localStorageList.length !== 0){
+        deletedList.forEach(el => {
             if (el.classList.contains('delete')) {
                 el.style.display = 'none';
             } else {

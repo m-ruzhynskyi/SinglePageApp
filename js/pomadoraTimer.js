@@ -1,10 +1,12 @@
 class PomadoraTimer {
+    static maxRows = 0;
     static startTrue = false;
     #row = 0;
     #interval;
     #startingTime
 
     constructor() {
+        PomadoraTimer.maxRows = Number(localStorage.getItem('maxRows'))
         PomadoraTimer.startTrue = true;
     }
 
@@ -68,6 +70,7 @@ class PomadoraTimer {
                 pomadora.classList.add('work');
                 pomadora.classList.remove('longBreak');
                 this.#row = 0;
+                localStorage.setItem('maxRows', (PomadoraTimer.maxRow + 1).toString())
                 return;
             }
 
@@ -91,7 +94,10 @@ start.addEventListener('click', () => {
     timer.start();
     start.style.display = 'none';
     reset.style.display = 'block';
+    console.log(PomadoraTimer.maxRows)
 })
 reset.addEventListener('click', () => {
     timer.reset();
 })
+
+localStorage.setItem('maxRows', '5')

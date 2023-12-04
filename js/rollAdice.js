@@ -1,13 +1,13 @@
 class RollAdice{
-    static alreadeCreatedCube = 0;
+    static alreadyCreatedCube = 0;
     #randCube;
 
     constructor() {
-        RollAdice.alreadeCreatedCube += 1;
+        RollAdice.alreadyCreatedCube += 1;
         this.#randCube = Math.floor(Math.random() * 6) + 1;
     }
 
-    creareCube () {
+    createCube () {
         let pic = document.createElement('img')
         pic.src = `../assets/img/dice${this.#randCube}.png`;
         pic.alt = `Dice${this.#randCube}`;
@@ -16,7 +16,7 @@ class RollAdice{
     }
 
     back(){
-        RollAdice.alreadeCreatedCube = 0;
+        RollAdice.alreadyCreatedCube = 0;
         let allCube = document.querySelectorAll('#cube');
         allCube.forEach(el => {
             el.remove()
@@ -41,23 +41,21 @@ restart.addEventListener('click', () => {
 
 function roll(){
     let input = document.querySelector('#roll');
-    if(input.value !== 0 && input.value !== ''){
+    if (document.activeElement === input || document.querySelector('#rollDeices')){
+        if(input.value !== 0 && input.value !== '' && input.value < 7){
             for (let i = 0; i < input.value; i++) {
                 let cube = new RollAdice();
-                if (RollAdice.alreadeCreatedCube < 7){
-                    if (RollAdice.alreadeCreatedCube < 5) {
-                        document.querySelector('.firstFour').append(cube.creareCube())
-                    } else {
-                        document.querySelector('.lastTwo').append(cube.creareCube())
-
-                    }
-                }else{
-                    console.log(RollAdice.alreadeCreatedCube)
-                    alert('You have get a max cubes!')
-                    break
+                if (RollAdice.alreadyCreatedCube < 5) {
+                    document.querySelector('.firstFour').append(cube.createCube())
+                } else {
+                    document.querySelector('.lastTwo').append(cube.createCube())
                 }
             }
-
+            input.value = '';
+        } else {
+            alert('You have get a max cubes!')
+            input.value = '';
+        }
     }
 }
 
