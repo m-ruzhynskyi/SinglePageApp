@@ -42,18 +42,20 @@ restart.addEventListener('click', () => {
 function roll(){
     let input = document.querySelector('#roll');
     if (document.activeElement === input || document.querySelector('#rollDeices')){
-        if(input.value !== 0 && input.value !== '' && input.value < 7){
+        if(input.value !== 0 && input.value !== ''){
             for (let i = 0; i < input.value; i++) {
                 let cube = new RollAdice();
+                if (input.value > 7){
+                    alert('You have get a max cubes!')
+                    input.value = '';
+                    break
+                }
                 if (RollAdice.alreadyCreatedCube < 5) {
                     document.querySelector('.firstFour').append(cube.createCube())
                 } else {
                     document.querySelector('.lastTwo').append(cube.createCube())
                 }
             }
-            input.value = '';
-        } else {
-            alert('You have get a max cubes!')
             input.value = '';
         }
     }
