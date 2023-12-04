@@ -133,7 +133,7 @@ main {
     color: white;
     font-family: PoppinsSemiBold;
     font-size: 36px;
-    margin: 10px 0 10px 25px;
+    margin: 10px 0 0 25px;
 }
 
 #pomadoro .timer h1{
@@ -377,3 +377,36 @@ main {
     display: flex;
     justify-content: space-around;
 }
+
+#historyBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    color: white;
+}
+
+#historyBlock p{
+    display: block;
+    margin-right: 52%;
+    font-family: PoppinsRegular;
+    font-size: 21px;
+    max-width: ;
+}
+
+#historyBlock span{
+    margin-right: 100%;
+}
+
+.historyBlock p:first-of-type{
+    margin: 0;
+    font-family: PoppinsRegular;
+    font-size: 24px;
+    color: white;
+}
+
+.historyBlock span:first-of-type{
+    margin: 0 16% 0 13%;
+    color: white;
+}
+
