@@ -1,12 +1,12 @@
 class PomadoraTimer {
-    static maxRows = 0;
+    static maxRow = 0;
     static startTrue = false;
     #row = 0;
     #interval;
     #startingTime
 
     constructor() {
-        PomadoraTimer.maxRows = Number(localStorage.getItem('maxRows'))
+        if (localStorage.getItem('maxRow')) PomadoraTimer.maxRow = Number(JSON.parse(localStorage.getItem('maxRow')).num)
         PomadoraTimer.startTrue = true;
     }
 
@@ -42,7 +42,8 @@ class PomadoraTimer {
         clearInterval(this.#interval)
         start.style.display = 'block';
         reset.style.display = 'none';
-        this.#row = 0
+        PomadoraTimer.startTrue = true;
+        this.#row = 0;
     }
 
 
@@ -52,27 +53,33 @@ class PomadoraTimer {
 
         console.log(this.#startingTime)
 
-        if (this.#startingTime === '0:10') {
+        if (this.#startingTime === '25:00') {
             this.#row += 1;
             if (this.#row < 3) {
                 pomadora.classList.add('shortBreak');
                 pomadora.classList.remove('work');
                 pomadora.classList.remove('longBreak');
-                timer.textContent = `0:05`;
+                timer.textContent = `05:00`;
             } else if (this.#row === 3) {
                 pomadora.classList.remove('shortBreak');
                 pomadora.classList.remove('work');
                 pomadora.classList.add('longBreak');
-                timer.textContent = `00:10`;
+                timer.textContent = `15:00`;
             } else {
-                timer.textContent = '0:20'
+                timer.textContent = '25:00'
                 start.style.display = 'block';
                 reset.style.display = 'none';
                 pomadora.classList.remove('shortBreak');
                 pomadora.classList.add('work');
                 pomadora.classList.remove('longBreak');
                 this.#row = 0;
-                localStorage.setItem('maxRows', (PomadoraTimer.maxRow + 1).toString())
+
+                PomadoraTimer.maxRow += 1
+
+                localStorage.setItem('maxRow', JSON.stringify({
+                    num: (PomadoraTimer.maxRow),
+                    date:  `${String(dateClass.getDate()).padStart(2, '0')}.${String(dateClass.getMonth() + 1).padStart(2, '0')}.${dateClass.getFullYear()}`
+                }))
 
                 this.addHistory()
 
@@ -82,7 +89,7 @@ class PomadoraTimer {
             PomadoraTimer.startTrue = true;
             this.start();
         } else {
-            timer.textContent = `0:10`;
+            timer.textContent = `25:00`;
             pomadora.classList.remove('shortBreak');
             pomadora.classList.add('work');
             pomadora.classList.remove('longBreak');
@@ -90,15 +97,15 @@ class PomadoraTimer {
             this.start();
         }
     }
-    addHistory(){
+
+    addHistory(data=`${String(dateClass.getDate()).padStart(2, '0')}.${String(dateClass.getMonth() + 1).padStart(2, '0')}.${dateClass.getFullYear()}`, maxRow = PomadoraTimer.maxRow){
         let historyBlock = document.querySelector('#historyBlock');
-        let dateClass = new Date();
-        let date = `${dateClass.getDate()}.${dateClass.getMonth() + 1}.${dateClass.getFullYear()}`;
+        if (historyBlock.firstChild) {
+            historyBlock.removeChild(historyBlock.firstChild);
+        }
+
         let p = document.createElement("p")
-        let span = document.createElement("span")
-        span.textContent = date;
-        p.textContent = `${PomadoraTimer.maxRows}`
-        p.append(span)
+        p.insertAdjacentHTML("beforeend", `<span>${data}</span> ${maxRow} rows`)
         historyBlock.append(p)
     }
 }
@@ -106,14 +113,17 @@ class PomadoraTimer {
 let timer = new PomadoraTimer();
 let start = document.querySelector('#start')
 let reset = document.querySelector('#reset')
+let dateClass = new Date();
+window.addEventListener('load', () => {
+    if (localStorage.getItem('maxRow')){
+        timer.addHistory(JSON.parse(localStorage.getItem('maxRow')).date, JSON.parse(localStorage.getItem('maxRow')).num)
+    }
+})
 start.addEventListener('click', () => {
     timer.start();
     start.style.display = 'none';
     reset.style.display = 'block';
-    console.log(PomadoraTimer.maxRows)
 })
 reset.addEventListener('click', () => {
     timer.reset();
 })
-
-localStorage.setItem('maxRows', '5')
