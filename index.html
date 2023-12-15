@@ -28,12 +28,15 @@
                 <div class="exchange">
                     <h2>EXCHANGE</h2>
                     <div id="input">
-                        <input type="number">
-                        <select id="inCountry"></select>
+                        <input type="number" min="1" id="outerValue">
+                        <select id="inCountry">
+                            <option value="UAH" selected>UAH Українська гривня</option>
+                        </select>
                     </div>
                     <div id="outer">
-                        <input type="number">
-                        <select id="ourCountry"></select>
+                        <input type="number" min ='1' id="inputValue" value="1">
+                        <select id="outCountry">
+                        </select>
                     </div>
                 </div>
             </div>
@@ -87,4 +90,5 @@
 <script src="js/toDoTracker.js"></script>
 <script src="js/rollAdice.js"></script>
 <script src="js/pomadoraTimer.js"></script>
+<script src="js/exchange.js"></script>
 </html>
