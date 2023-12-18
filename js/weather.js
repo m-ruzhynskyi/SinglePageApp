@@ -27,7 +27,8 @@ class GetWeather {
     }
     init = () =>{
         if (GetWeather.alreadyExist){
-            document.querySelector('.weather p').remove()
+            document.querySelector('.weatherBlock div').remove()
+            GetWeather.alreadyExist = false
         }
         WeatherBuilt.prototype.built()
     }
@@ -73,54 +74,8 @@ class WeatherBuilt extends GetWeather{
         weatherDiv.append(tempNow,feelsLike, minTemp, humidity)
         mainDiv.append(weatherImage, weatherDiv)
         document.querySelector('.weatherBlock').append(mainDiv)
+        GetWeather.alreadyExist = true
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function print(text){
-    console.log(text)
 }
 
 function startWeather() {
@@ -129,6 +84,7 @@ function startWeather() {
         new WeatherBuilt(city)
     }
 }
+window.addEventListener('load',startWeather );
 document.querySelector('#submitCity').addEventListener('click', startWeather)
 document.querySelector('#cityName').addEventListener('keypress', (e) => {
     let city = document.querySelector('#cityName').value
