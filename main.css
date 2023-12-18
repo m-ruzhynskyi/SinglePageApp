@@ -42,7 +42,7 @@ h2{
      font-size: 42px;
      text-align: center;
      color: white;
-     margin: 29px 0 12px 0;
+     margin: 29px 0 0 0;
  }
 
 header{
@@ -290,16 +290,12 @@ main {
     font-size: 24px;
     background-color: rgba(173, 136, 110, 1);
     color: white;
-    max-width: 60px;
+    width: 37%;
     height: 49px;
     padding: 8px;
     border: none;
     cursor: pointer;
     border-radius: 15px;
-}
-
-#restart{
-    max-width: 95px;
 }
 
 #dices{
@@ -401,4 +397,41 @@ main {
 
 #historyBlock span{
     margin-right: 100%;
+}
+
+#cityName{
+    font-family: PoppinsMedium;
+    font-size: 24px;
+    background-color: rgba(252, 215, 182, 1);
+    border-radius: 15px;
+    border: none;
+    width: 245px;
+    padding: 7px 0 7px 23px;
+    margin-left: 2%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#submitCity{
+    font-family: PoppinsMedium;
+    font-size: 24px;
+    background-color: rgba(173, 136, 110, 1);
+    color: white;
+    height: 49px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.weatherBlock{
+    height: 110px;
+    box-sizing: border-box;
+}
+
+.weatherText{
+    font-family: PoppinsMedium;
+    font-size: 15px;
+    margin-top: 2px;
+    margin-bottom: 0;
 }
