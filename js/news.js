@@ -1,5 +1,5 @@
 class NewsGenerate {
-    #url = 'https://newsapi.org/v2/everything?q=ukraine&sortBy=popularity&apiKey=3c0a771f45234c76a6f0a996adb1d43a';
+    #url = 'httpss://newsapi.org/v2/everything?q=ukraine&sortBy=popularity&apiKey=3c0a771f45234c76a6f0a996adb1d43a';
     #articles = [];
 
     // create an object with objects with news
@@ -14,7 +14,11 @@ class NewsGenerate {
                     urlToImage: obj['urlToImage'],
                 })
             }))
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                this.#articles = articleGit
+                document.querySelector('#loadedNews').hidden = ''
+            })
             .then(this.init)
     }
 
@@ -39,8 +43,7 @@ class NewsGenerate {
             let p = document.createElement('p');
             p.textContent = article['description']
             p.classList.add('descriptions');
-            (article.description.length > 100) ? p.textContent = article['description'].substring(0, 101)+'...':
-                p.textContent = article['description'];
+            (article.description.length > 100) ? p.textContent = article['description'].substring(0, 101)+'...': p.textContent = article['description'];
 
             textDiv.append(header, p)
             newNewsDiv.append(textDiv,img)

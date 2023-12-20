@@ -468,3 +468,10 @@ main {
     margin-top: 5px;
     text-align: justify;
 }
+
+#loadedNews{
+    color: red;
+    font-family: PoppinsSemiBold;
+    font-size: 18px;
+    text-align: center;
+}
