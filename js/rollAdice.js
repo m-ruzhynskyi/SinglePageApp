@@ -23,7 +23,7 @@ class RollAdice{
         })
     }
 }
-
+let el = new RollAdice();
 let rollDice = document.querySelector('#rollDeices');
 rollDice.addEventListener('click', roll);
 
@@ -34,7 +34,6 @@ document.addEventListener('keypress', (e) => {
 
 let restart = document.querySelector('#restart')
 restart.addEventListener('click', () => {
-    let el = new RollAdice();
     el.back()
 
 })
@@ -54,6 +53,10 @@ function roll(){
                     document.querySelector('.firstFour').append(cube.createCube())
                 } else {
                     document.querySelector('.lastTwo').append(cube.createCube())
+                }
+                if (RollAdice.alreadyCreatedCube > 6){
+                    el.back()
+                    roll()
                 }
             }
             input.value = '';
