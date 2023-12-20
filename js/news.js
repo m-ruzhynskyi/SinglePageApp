@@ -41,7 +41,7 @@ class NewsGenerate {
             let img = new Image(140, 115);
             img.src = article['urlToImage'];
             let p = document.createElement('p');
-            p.textContent = article['description']
+            p.textContent = article.description
             p.classList.add('descriptions');
             (article.description.length > 100) ? p.textContent = article['description'].substring(0, 101)+'...': p.textContent = article['description'];
 
